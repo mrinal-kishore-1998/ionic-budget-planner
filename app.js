@@ -4,6 +4,14 @@ const cancelBtn = document.querySelector('#btn-cancel');
 const confirmBtn = document.querySelector('#btn-confirm');
 
 const expenseList = document.querySelector('#expense-list');
+const totalExpenses = document.querySelector('#total-expenses');
+
+let totalAmount = 0;
+
+const clear = () => {
+  reasonInput.value = '';
+  reasonAmount.value = '';
+};
 
 confirmBtn.addEventListener('click', () => {
   const enterReason = reasonInput.value;
@@ -14,11 +22,19 @@ confirmBtn.addEventListener('click', () => {
     enterAmount <= 0 ||
     enterAmount.trim().length <= 0
   ) {
+    alert('Invalid input');
     return;
   }
   // console.log(enterReason, enterAmount);
 
   const newItem = document.createElement('ion-item');
-  newItem.textContent = enterReason + ': $' + enterAmount;
+  newItem.textContent = enterReason + ': ₹' + enterAmount;
   expenseList.appendChild(newItem);
+
+  totalAmount += +enterAmount;
+  totalExpenses.textContent = totalAmount;
+
+  clear();
 });
+
+cancelBtn.addEventListener('click', clear);
