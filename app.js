@@ -25,7 +25,6 @@ confirmBtn.addEventListener('click', () => {
     alert('Invalid input');
     return;
   }
-  // console.log(enterReason, enterAmount);
 
   const newItem = document.createElement('ion-item');
   newItem.textContent = enterReason + ': ₹' + enterAmount;
