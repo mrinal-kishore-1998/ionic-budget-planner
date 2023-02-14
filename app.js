@@ -6,6 +6,8 @@ const confirmBtn = document.querySelector('#btn-confirm');
 const expenseList = document.querySelector('#expense-list');
 const totalExpenses = document.querySelector('#total-expenses');
 
+const alertCtrl = document.querySelector('ion-alert-controller');
+
 let totalAmount = 0;
 
 const clear = () => {
@@ -22,7 +24,15 @@ confirmBtn.addEventListener('click', () => {
     enterAmount <= 0 ||
     enterAmount.trim().length <= 0
   ) {
-    alert('Invalid input');
+    alertCtrl
+      .create({
+        header: 'Invalid inputs',
+        message: 'Please enter a valid input!',
+        buttons: ['okay'],
+      })
+      .then((alertEle) => {
+        alertEle.present();
+      });
     return;
   }
 
